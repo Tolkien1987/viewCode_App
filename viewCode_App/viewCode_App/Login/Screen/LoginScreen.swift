@@ -9,7 +9,7 @@ import UIKit
 
 class LoginScreen: UIView {
 
-    lazy var loginLabel:UILabel = {
+    lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -18,9 +18,20 @@ class LoginScreen: UIView {
         return label
     }()
     
+    lazy var logoImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "logo")
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.loginLabel)
+        self.addSubview(self.logoImageView)
+        
+        
         self.setUpConstraints()
     }
     
@@ -31,8 +42,13 @@ class LoginScreen: UIView {
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
         
+            self.loginLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             self.loginLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.loginLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.logoImageView.topAnchor.constraint(equalTo: self.loginLabel.bottomAnchor, constant: 20),
+            self.logoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 150),
+            self.logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -150),
+            self.logoImageView.heightAnchor.constraint(equalToConstant: 80)
+           
 
         ])
     }

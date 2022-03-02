@@ -18,12 +18,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginScreen?.delegate(delegate: self)
         self.loginScreen?.configTextFieldDelegate(delegate: self)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
+}
+
+extension ViewController: LoginScreenProtocol {
+    func actionLoginButton() {
+        print("LoginButton funcionando!")
+    }
+    
+    func actionRegisterButton() {
+        print("RegisterButton funcionando!")
+    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {

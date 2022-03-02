@@ -7,7 +7,18 @@
 
 import UIKit
 
+protocol LoginScreenProtocol: AnyObject {
+    func actionLoginButton()
+    func actionRegisterButton()
+}
+
 class LoginScreen: UIView {
+    
+    private weak var delegate: LoginScreenProtocol?
+    
+    func delegate(delegate: LoginScreenProtocol?) {
+        self.delegate = delegate
+    }
 
     lazy var loginLabel: UILabel = {
         let label = UILabel()
@@ -61,6 +72,7 @@ class LoginScreen: UIView {
         button.setTitleColor(.white, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
         return button
     }()
     
@@ -71,7 +83,7 @@ class LoginScreen: UIView {
         button.setTitle("No account? Register!", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitleColor(.black, for: .normal)
-
+        button.addTarget(self, action: #selector(self.tappedRegisterButton), for: .touchUpInside)
         return button
     }()
     
@@ -98,8 +110,14 @@ class LoginScreen: UIView {
     public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
         self.emailTextField.delegate = delegate
         self.passwordTextField.delegate = delegate
-        
-        
+    }
+    
+    @objc private func tappedLoginButton() {
+        self.delegate?.actionLoginButton()
+    }
+    
+    @objc private func tappedRegisterButton() {
+        self.delegate?.actionRegisterButton()
     }
     
     required init?(coder: NSCoder) {

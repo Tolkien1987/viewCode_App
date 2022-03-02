@@ -23,16 +23,76 @@ class LoginScreen: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "logo")
         image.contentMode = .scaleAspectFill
+        image.alpha = 0.85
         return image
+    }()
+    
+    lazy var emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocorrectionType = .no
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
+        textField.keyboardType = .emailAddress
+        textField.placeholder = "Type your e-mail"
+        textField.textColor = .darkGray
+        return textField
+    }()
+    
+    lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocorrectionType = .no
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
+        textField.keyboardType = .default
+        textField.placeholder = "Type your password"
+        textField.isSecureTextEntry = true
+        textField.textColor = .darkGray
+        return textField
+    }()
+    
+    lazy var loginButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemMint
+        button.setTitle("Login", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.setTitleColor(.white, for: .normal)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    
+    lazy var registerButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .white
+        button.setTitle("No account? Register!", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.setTitleColor(.black, for: .normal)
+
+        return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.configSuperView()
+        self.configBackground()
+        self.setUpConstraints()
+    }
+    
+    private func configBackground() {
+        self.backgroundColor = .white
+    }
+    
+    private func configSuperView() {
         self.addSubview(self.loginLabel)
         self.addSubview(self.logoImageView)
-        
-        
-        self.setUpConstraints()
+        self.addSubview(self.emailTextField)
+        self.addSubview(self.passwordTextField)
+        self.addSubview(self.registerButton)
+        self.addSubview(self.loginButton)
     }
     
     required init?(coder: NSCoder) {
@@ -44,12 +104,26 @@ class LoginScreen: UIView {
         
             self.loginLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             self.loginLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.logoImageView.topAnchor.constraint(equalTo: self.loginLabel.bottomAnchor, constant: 20),
+            self.logoImageView.topAnchor.constraint(equalTo: self.loginLabel.bottomAnchor, constant: 50),
             self.logoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 150),
             self.logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -150),
-            self.logoImageView.heightAnchor.constraint(equalToConstant: 80)
-           
-
+            self.logoImageView.heightAnchor.constraint(equalToConstant: 80),
+            self.emailTextField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 50),
+            self.emailTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            self.emailTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            self.emailTextField.heightAnchor.constraint(equalToConstant: 45),
+            self.passwordTextField.topAnchor.constraint(equalTo: self.emailTextField.bottomAnchor, constant: 20),
+            self.passwordTextField.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
+            self.passwordTextField.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
+            self.passwordTextField.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
+            self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 20),
+            self.loginButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
+            self.loginButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
+            self.loginButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
+            self.registerButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 100),
+            self.registerButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
+            self.registerButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor)
+        
         ])
     }
 }

@@ -1,40 +1,20 @@
 //
-//  LoginScreen.swift
+//  RegisterScreen.swift
 //  viewCode_App
 //
-//  Created by Fabio Martinez on 26/02/22.
+//  Created by Fabio Martinez on 02/03/22.
 //
 
 import UIKit
 
-protocol LoginScreenProtocol: AnyObject {
-    func actionLoginButton()
-    func actionRegisterButton()
-}
-
-class LoginScreen: UIView {
-    
-    private weak var delegate: LoginScreenProtocol?
-    
-    func delegate(delegate: LoginScreenProtocol?) {
-        self.delegate = delegate
-    }
-
-    lazy var loginLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.text = "Login"
-        return label
-    }()
+class RegisterScreen: UIView {
     
     lazy var logoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "logo")
         image.contentMode = .scaleAspectFill
-        image.alpha = 1.0
+        image.alpha = 0.85
         return image
     }()
     
@@ -63,28 +43,27 @@ class LoginScreen: UIView {
         return textField
     }()
     
-    lazy var loginButton: UIButton = {
+    lazy var registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemMint
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Register!", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         button.setTitleColor(.white, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
         return button
     }()
     
-    lazy var registerButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .white
-        button.setTitle("No account? Register!", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.setTitleColor(.darkGray, for: .normal)
-        button.addTarget(self, action: #selector(self.tappedRegisterButton), for: .touchUpInside)
-        return button
+    lazy var bottomLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .darkGray
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "Make a dog happy, adopt🐶❤️!"
+        label.textAlignment = .center
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -99,25 +78,11 @@ class LoginScreen: UIView {
     }
     
     private func configSuperView() {
-        self.addSubview(self.loginLabel)
         self.addSubview(self.logoImageView)
         self.addSubview(self.emailTextField)
         self.addSubview(self.passwordTextField)
         self.addSubview(self.registerButton)
-        self.addSubview(self.loginButton)
-    }
-    
-    public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
-        self.emailTextField.delegate = delegate
-        self.passwordTextField.delegate = delegate
-    }
-    
-    @objc private func tappedLoginButton() {
-        self.delegate?.actionLoginButton()
-    }
-    
-    @objc private func tappedRegisterButton() {
-        self.delegate?.actionRegisterButton()
+        self.addSubview(self.bottomLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -126,10 +91,8 @@ class LoginScreen: UIView {
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-        
-            self.loginLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            self.loginLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.logoImageView.topAnchor.constraint(equalTo: self.loginLabel.bottomAnchor, constant: 50),
+            
+            self.logoImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50),
             self.logoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 150),
             self.logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -150),
             self.logoImageView.heightAnchor.constraint(equalToConstant: 80),
@@ -141,14 +104,15 @@ class LoginScreen: UIView {
             self.passwordTextField.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
             self.passwordTextField.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
             self.passwordTextField.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
-            self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 20),
-            self.loginButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
-            self.loginButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
-            self.loginButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
-            self.registerButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 150),
+            self.registerButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 20),
             self.registerButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
-            self.registerButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor)
-        
+            self.registerButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
+            self.registerButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
+            self.bottomLabel.topAnchor.constraint(equalTo: self.registerButton.bottomAnchor, constant: 180),
+            self.bottomLabel.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
+            self.bottomLabel.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
+            
         ])
     }
+
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
 
     var loginScreen: LoginScreen?
     
@@ -20,7 +20,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.loginScreen?.delegate(delegate: self)
         self.loginScreen?.configTextFieldDelegate(delegate: self)
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,18 +27,19 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: LoginScreenProtocol {
+extension LoginVC: LoginScreenProtocol {
     func actionLoginButton() {
         print("LoginButton funcionando!")
     }
     
     func actionRegisterButton() {
         print("RegisterButton funcionando!")
+        let vc:RegisterVC = RegisterVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
-extension ViewController: UITextFieldDelegate {
+extension LoginVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textFieldDidBeginEditing")
@@ -54,5 +54,4 @@ extension ViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }

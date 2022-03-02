@@ -47,6 +47,7 @@ extension LoginVC: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("textFieldDidEndEditing")
+        self.loginScreen?.validateTextFields()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

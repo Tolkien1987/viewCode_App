@@ -19,7 +19,7 @@ class LoginScreen: UIView {
     func delegate(delegate: LoginScreenProtocol?) {
         self.delegate = delegate
     }
-
+    
     lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +92,7 @@ class LoginScreen: UIView {
         self.configSuperView()
         self.configBackground()
         self.setUpConstraints()
+        self.configButtonEnable(false)
     }
     
     private func configBackground() {
@@ -120,13 +121,35 @@ class LoginScreen: UIView {
         self.delegate?.actionRegisterButton()
     }
     
+    public func validateTextFields() {
+        
+        let email:String = self.emailTextField.text ?? ""
+        let password:String = self.passwordTextField.text ?? ""
+        
+        if !email.isEmpty && !password.isEmpty {
+            self.configButtonEnable(true)
+        } else {
+            self.configButtonEnable(false)
+        }
+    }
+    
+    private func configButtonEnable(_ enable: Bool) {
+        if enable {
+            self.loginButton.setTitleColor(.white, for: .normal)
+            self.loginButton.isEnabled = true
+        } else {
+            self.loginButton.setTitleColor(.lightGray, for: .normal)
+            self.loginButton.isEnabled = false
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-        
+            
             self.loginLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             self.loginLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.logoImageView.topAnchor.constraint(equalTo: self.loginLabel.bottomAnchor, constant: 50),
@@ -148,7 +171,7 @@ class LoginScreen: UIView {
             self.registerButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 150),
             self.registerButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
             self.registerButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor)
-        
+            
         ])
     }
 }

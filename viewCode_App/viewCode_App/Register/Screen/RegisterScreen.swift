@@ -7,14 +7,24 @@
 
 import UIKit
 
+protocol RegisterScreenProtocol: AnyObject {
+    func actionRegisterButton()
+}
+
 class RegisterScreen: UIView {
+    
+    weak private var delegate: RegisterScreenProtocol?
+    
+    func delagete(delegate: RegisterScreenProtocol) {
+        self.delegate = delegate
+    }
     
     lazy var logoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "logo")
         image.contentMode = .scaleAspectFill
-        image.alpha = 0.85
+        image.alpha = 1
         return image
     }()
     
@@ -52,7 +62,7 @@ class RegisterScreen: UIView {
         button.setTitleColor(.white, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 8
-        //button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.tappedRegisterButton), for: .touchUpInside)
         return button
     }()
     
@@ -60,7 +70,7 @@ class RegisterScreen: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.text = "Make a dog happy, adopt🐶❤️!"
         label.textAlignment = .center
         return label
@@ -71,10 +81,42 @@ class RegisterScreen: UIView {
         self.configSuperView()
         self.configBackground()
         self.setUpConstraints()
+        self.configButtonEnable(false)
     }
     
     private func configBackground() {
         self.backgroundColor = .white
+    }
+    
+    public func configTextFieldDelagate(delagate: UITextFieldDelegate) {
+        self.emailTextField.delegate = delagate
+        self.passwordTextField.delegate = delagate
+    }
+    
+    @objc private func tappedRegisterButton() {
+        self.delegate?.actionRegisterButton()
+    }
+    
+    public func validateTextFields() {
+        
+        let email:String = self.emailTextField.text ?? ""
+        let password:String = self.passwordTextField.text ?? ""
+        
+        if !email.isEmpty && !password.isEmpty {
+            self.configButtonEnable(true)
+        } else {
+            self.configButtonEnable(false)
+        }
+    }
+    
+    private func configButtonEnable(_ enable: Bool) {
+        if enable {
+            self.registerButton.setTitleColor(.white, for: .normal)
+            self.registerButton.isEnabled = true
+        } else {
+            self.registerButton.setTitleColor(.lightGray, for: .normal)
+            self.registerButton.isEnabled = false
+        }
     }
     
     private func configSuperView() {

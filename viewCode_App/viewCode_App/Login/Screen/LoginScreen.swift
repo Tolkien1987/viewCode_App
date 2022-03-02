@@ -69,7 +69,7 @@ class LoginScreen: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.setTitle("No account? Register!", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitleColor(.black, for: .normal)
 
         return button
@@ -93,6 +93,13 @@ class LoginScreen: UIView {
         self.addSubview(self.passwordTextField)
         self.addSubview(self.registerButton)
         self.addSubview(self.loginButton)
+    }
+    
+    public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
+        self.emailTextField.delegate = delegate
+        self.passwordTextField.delegate = delegate
+        
+        
     }
     
     required init?(coder: NSCoder) {

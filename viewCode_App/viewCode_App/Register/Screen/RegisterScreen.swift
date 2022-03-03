@@ -48,7 +48,7 @@ class RegisterScreen: UIView {
         textField.borderStyle = .roundedRect
         textField.keyboardType = .default
         textField.placeholder = "Type your password"
-        textField.isSecureTextEntry = true
+        textField.isSecureTextEntry = true 
         textField.textColor = .darkGray
         return textField
     }()

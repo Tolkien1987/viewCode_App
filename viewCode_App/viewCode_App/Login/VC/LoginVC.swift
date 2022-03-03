@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController {
+    
+    var auth: Auth?
 
     var loginScreen: LoginScreen?
     
@@ -20,6 +23,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         self.loginScreen?.delegate(delegate: self)
         self.loginScreen?.configTextFieldDelegate(delegate: self)
+        self.auth = Auth.auth()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -29,11 +33,24 @@ class LoginVC: UIViewController {
 
 extension LoginVC: LoginScreenProtocol {
     func actionLoginButton() {
-        print("LoginButton funcionando!")
+        
+        guard let login = self.loginScreen else {return}
+        
+        self.auth?.signIn(withEmail: login.getEmail(), password: login.getPassword(), completion: { (usuario, error) in
+            
+            if error != nil {
+                print("Incorrect data input, please check and try again!")
+            } else {
+                if usuario == nil {
+                    print("Internal problem, try again later, please!")
+                } else {
+                    print("Login successful! Yeah! ")
+                }
+            }
+        })
     }
     
     func actionRegisterButton() {
-        print("RegisterButton funcionando!")
         let vc:RegisterVC = RegisterVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -42,16 +59,13 @@ extension LoginVC: LoginScreenProtocol {
 extension LoginVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
         self.loginScreen?.validateTextFields()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn")
         textField.resignFirstResponder()
         return true
     }

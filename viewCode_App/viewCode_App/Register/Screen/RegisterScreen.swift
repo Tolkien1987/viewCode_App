@@ -128,6 +128,14 @@ class RegisterScreen: UIView {
         }
     }
     
+    public func getEmail() -> String {
+        return self.emailTextField.text ?? ""
+    }
+    
+    public func getPassword() -> String {
+        return self.passwordTextField.text ?? ""
+    }
+    
     private func configSuperView() {
         self.addSubview(self.logoImageView)
         self.addSubview(self.emailTextField)

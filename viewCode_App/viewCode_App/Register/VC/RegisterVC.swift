@@ -44,9 +44,9 @@ extension RegisterVC: UITextFieldDelegate {
 extension RegisterVC: RegisterScreenProtocol {
     func actionRegisterButton() {
         
-        let email:String = self.registerScreen?.emailTextField.text ?? ""
-        let password:String = self.registerScreen?.passwordTextField.text ?? ""
-        self.auth?.createUser(withEmail: email, password: password, completion: { (result, error) in
+        guard let register = self.registerScreen else {return}
+    
+        self.auth?.createUser(withEmail: register.getEmail(), password: register.getPassword(), completion: { (result, error) in
             
             if error != nil {
                 print("Authentication Error :( ")

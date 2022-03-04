@@ -34,20 +34,24 @@ class LoginVC: UIViewController {
 extension LoginVC: LoginScreenProtocol {
     func actionLoginButton() {
         
-        guard let login = self.loginScreen else {return}
+        let vc:HomeVC = HomeVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    
         
-        self.auth?.signIn(withEmail: login.getEmail(), password: login.getPassword(), completion: { (usuario, error) in
-            
-            if error != nil {
-                print("Incorrect data input, please check and try again!")
-            } else {
-                if usuario == nil {
-                    print("Internal problem, try again later, please!")
-                } else {
-                    print("Login successful! Yeah! ")
-                }
-            }
-        })
+//        guard let login = self.loginScreen else {return}
+//        
+//        self.auth?.signIn(withEmail: login.getEmail(), password: login.getPassword(), completion: { (usuario, error) in
+//            
+//            if error != nil {
+//                print("Incorrect data input, please check and try again!")
+//            } else {
+//                if usuario == nil {
+//                    print("Internal problem, try again later, please!")
+//                } else {
+//                    print("Login successful! Yeah! ")
+//                }
+//            }
+//        })
     }
     
     func actionRegisterButton() {

@@ -14,6 +14,10 @@
 		CE5E7F2F27C8788500C6B4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5E7F2E27C8788500C6B4ED /* Assets.xcassets */; };
 		CE5E7F3227C8788500C6B4ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5E7F3027C8788500C6B4ED /* LaunchScreen.storyboard */; };
 		CECCD8F527C9D14C00DFDB0C /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCD8F427C9D14C00DFDB0C /* LoginScreen.swift */; };
+		CEE3E26A27D1085F00D35382 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3E26927D1085F00D35382 /* HomeVC.swift */; };
+		CEE3E26C27D1097700D35382 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3E26B27D1097700D35382 /* HomeScreen.swift */; };
+		CEE3E26F27D1411600D35382 /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3E26E27D1411600D35382 /* UserDetailTableViewCell.swift */; };
+		CEE3E27227D169B800D35382 /* DataUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3E27127D169B800D35382 /* DataUser.swift */; };
 		CEE9FEB827CFCCC6001531D9 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9FEB727CFCCC6001531D9 /* RegisterVC.swift */; };
 		CEE9FEBD27CFD072001531D9 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9FEBC27CFD072001531D9 /* RegisterScreen.swift */; };
 		E60907CB380FA9476BDC9BF3 /* Pods_viewCode_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86AAF130548450233E37CEA3 /* Pods_viewCode_App.framework */; };
@@ -32,6 +36,10 @@
 		CE5E7F3127C8788500C6B4ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE5E7F3327C8788500C6B4ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CECCD8F427C9D14C00DFDB0C /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		CEE3E26927D1085F00D35382 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		CEE3E26B27D1097700D35382 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		CEE3E26E27D1411600D35382 /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
+		CEE3E27127D169B800D35382 /* DataUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUser.swift; sourceTree = "<group>"; };
 		CEE9FEB727CFCCC6001531D9 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		CEE9FEBC27CFD072001531D9 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +86,7 @@
 		CE5E7F2427C8788200C6B4ED /* viewCode_App */ = {
 			isa = PBXGroup;
 			children = (
+				CEE3E26627D1081F00D35382 /* Home */,
 				CEE9FEB427CFCC10001531D9 /* Register */,
 				CECCD8EF27C9CF9B00DFDB0C /* Login */,
 				CE5E7F2527C8788200C6B4ED /* AppDelegate.swift */,
@@ -113,6 +122,49 @@
 				CECCD8F427C9D14C00DFDB0C /* LoginScreen.swift */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		CEE3E26627D1081F00D35382 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3E27027D1699E00D35382 /* Model */,
+				CEE3E26D27D140C900D35382 /* cell */,
+				CEE3E26827D1082F00D35382 /* Screen */,
+				CEE3E26727D1082800D35382 /* VC */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CEE3E26727D1082800D35382 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3E26927D1085F00D35382 /* HomeVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		CEE3E26827D1082F00D35382 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3E26B27D1097700D35382 /* HomeScreen.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		CEE3E26D27D140C900D35382 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3E26E27D1411600D35382 /* UserDetailTableViewCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		CEE3E27027D1699E00D35382 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3E27127D169B800D35382 /* DataUser.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CEE9FEB427CFCC10001531D9 /* Register */ = {
@@ -264,10 +316,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE9FEBD27CFD072001531D9 /* RegisterScreen.swift in Sources */,
+				CEE3E26F27D1411600D35382 /* UserDetailTableViewCell.swift in Sources */,
 				CE5E7F2A27C8788200C6B4ED /* LoginVC.swift in Sources */,
 				CECCD8F527C9D14C00DFDB0C /* LoginScreen.swift in Sources */,
+				CEE3E27227D169B800D35382 /* DataUser.swift in Sources */,
 				CE5E7F2627C8788200C6B4ED /* AppDelegate.swift in Sources */,
+				CEE3E26C27D1097700D35382 /* HomeScreen.swift in Sources */,
 				CE5E7F2827C8788200C6B4ED /* SceneDelegate.swift in Sources */,
+				CEE3E26A27D1085F00D35382 /* HomeVC.swift in Sources */,
 				CEE9FEB827CFCCC6001531D9 /* RegisterVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

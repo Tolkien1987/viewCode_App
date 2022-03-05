@@ -6,6 +6,8 @@
  This project will be using a clean git history and best practices.
  
  Pictures and demo will be provided in the future.
+ 
+ <a href="https://ibb.co/gr51XQJ"><img src="https://i.ibb.co/qDtG4hp/App-prototype-1.png" alt="App-prototype-1" border="0"></a>
 
 ## Installation
 

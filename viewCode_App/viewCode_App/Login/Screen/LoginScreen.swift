@@ -148,7 +148,7 @@ class LoginScreen: UIView {
             self.loginButton.setTitleColor(.white, for: .normal)
             self.loginButton.isEnabled = true
         } else {
-            self.loginButton.setTitleColor(.lightGray, for: .normal)
+            self.loginButton.setTitleColor(.black, for: .normal)
             self.loginButton.isEnabled = false
         }
     }

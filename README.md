@@ -2,8 +2,9 @@
 
 
  This is an app build in Swift, with viewCode. It will have a loginScreen with Firebase integration for database.
- It will use Cocoapods for dependency and MVVM architecture design. I will bring some new features in the future to apply my new knowledgement.
- This project will be using a clean git history and best practices.
+ It will use Cocoapods for dependency and MVVM architecture design.
+ 
+ Also, this project will be using a clean git history and best practices.
  
  Pictures and demo will be provided in the future.
  
